@@ -1,0 +1,31 @@
+<div class="d-flex">
+  <div class="d-inline-flex p-2 flex-column">
+    Pending Orders:
+    <app-order-list class="list" (selectionChange)="onSelectionChanged($event)"></app-order-list>
+  </div>
+  <div class="d-inline-flex p-2 flex-column button-list justify-content-center">
+
+    <button class="btn btn-block btn-primary" (click)="orderButtonClick()">Order Now</button>
+
+    <button class="btn btn-block"
+            (click)="viewOrderButtonClick()"
+            [disabled]="selectedOrders.length !== 1">View Order</button>
+
+    <button class="btn btn-block"
+            [disabled]="selectedOrders.length === 0"
+            [ngPlural]="selectedOrders.length">
+      <ng-template ngPluralCase="=0">Mark Order Ready</ng-template>
+      <ng-template ngPluralCase="=1">Mark Order Ready</ng-template>
+      <ng-template ngPluralCase="other">Mark Orders Ready</ng-template>
+    </button>
+
+    <button class="btn btn-block"
+            [disabled]="selectedOrders.length === 0"
+            [ngPlural]="selectedOrders.length">
+      <ng-template ngPluralCase="=0">Order Picked Up</ng-template>
+      <ng-template ngPluralCase="=1">Order Picked Up</ng-template>
+      <ng-template ngPluralCase="other">Orders Picked Up</ng-template>
+    </button>
+
+  </div>
+</div>
