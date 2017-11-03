@@ -47,7 +47,7 @@ export class OrderComponent implements OnInit {
   }
 
   public removeButtonClick() {
-
+    this.orderItemList.removeSelectedItems();
   }
 
   public orderButtonClick() {

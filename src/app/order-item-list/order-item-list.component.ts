@@ -37,8 +37,12 @@ export class OrderItemListComponent {
 
   public addOrderItem(item: OrderItem) {
     this.orderItems.push(item);
-    // seriously?  Why doesn't cd.markForCheck() make this unneeded?
-    // this.orderItems = Object.assign([], this.orderItems);
     this.changeDetector.markForCheck();
   }
+
+  public removeSelectedItems(): any {
+    this.orderItems = this.orderItems.filter(item => !item.selected);
+    this.changeDetector.markForCheck();
+  }
+
 }
