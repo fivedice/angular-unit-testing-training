@@ -39,7 +39,7 @@ export class OrderComponent implements OnInit {
       const orderItem: OrderItem = {
         id: 0,
         type: this.selectedDonut,
-        quantity: this.form.get('quantity').value
+        quantity: parseInt(this.form.get('quantity').value, 10)
       };
       this.orderItemList.addOrderItem(orderItem);
     }
