@@ -1,0 +1,7 @@
+<app-list [listItems]="donuts"
+          [itemIdAccessor]="getItemId"
+          [itemNameAccessor]="getItemName"
+          [multipleSelect]="false"
+          [showPill]="false"
+          (selectionChange)="selectionChanged($event)">
+</app-list>

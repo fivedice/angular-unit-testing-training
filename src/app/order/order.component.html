@@ -1,3 +1,51 @@
-<p>
-  order works!
-</p>
+<div class="d-flex">
+  <div class="d-inline-flex p-2 flex-column">
+    Donuts:
+    <app-donut-list class="list" (selectionChange)="onDonutSelected($event)"></app-donut-list>
+  </div>
+
+  <div class="d-inline-flex p-2 flex-column button-list justify-content-center">
+
+    <form novalidate [formGroup]="form" class="btn-block">
+      Quantity:
+      <select class="form-control btn-block" formControlName="quantity">
+        <option value="{{OrderQuantity.Single}}">Single</option>
+        <option value="{{OrderQuantity.HalfDozen}}">1/2 Dozen</option>
+        <option value="{{OrderQuantity.OneDozen}}">1 Dozen</option>
+        <option value="{{OrderQuantity.TwoDozen}}">2 Dozen</option>
+      </select>
+    </form>
+
+    <button class="btn btn-block btn-secondary"
+            (click)="addButtonClick()"
+            [disabled]="!hasSelectedDonut()">
+      Add to Order
+    </button>
+
+    <button class="btn btn-block"
+            (click)="removeButtonClick()"
+            [disabled]="selectedOrderItems.length < 1"
+            [ngPlural]="selectedOrderItems.length">
+      <ng-template ngPluralCase="=0">Remove Item</ng-template>
+      <ng-template ngPluralCase="=1">Remove Item</ng-template>
+      <ng-template ngPluralCase="other">Remove Items</ng-template>
+    </button>
+
+    <button class="btn btn-block btn-primary"
+            (click)="orderButtonClick()"
+            [disabled]="selectedOrderItems.length === 0">
+      Place Order
+    </button>
+
+    <button class="btn btn-block btn-danger"
+            (click)="cancelClick()">
+      Cancel
+    </button>
+
+  </div>
+
+  <div class="d-inline-flex p-2 flex-column">
+    Items:
+    <app-order-item-list (selectionChange)="onOrderItemSelectionChange($event)"></app-order-item-list>
+  </div>
+</div>

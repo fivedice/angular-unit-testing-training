@@ -39,6 +39,7 @@ export class OrderListComponent implements OnInit, OnDestroy {
         sub.unsubscribe();
       }
     });
+    this.orderListService.clearSelections();
   }
 
   public toggleSelection(event: MouseEvent, order: Order) {

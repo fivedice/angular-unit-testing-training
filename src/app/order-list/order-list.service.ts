@@ -14,10 +14,7 @@ export class OrderListService {
 
   private orders: Order[] = [];
 
-  constructor() {
-    this.loadInitialOrders();
-    this.next();
-  }
+  constructor() {}
 
   /**
    * Fires a fake async request to get all orders that have not been picked up.
@@ -54,6 +51,13 @@ export class OrderListService {
     this.next();
   }
 
+  public clearSelections() {
+    this.orders.forEach((order: Order) => {
+      order.selected = false;
+    });
+    this.next();
+  }
+
   /**
    * Updates the observable stream on non-pending orders with the latest data.
    * @private
@@ -66,32 +70,4 @@ export class OrderListService {
       this.ordersChanged$.next(pending);
     }, 100);
   }
-
-  private loadInitialOrders() {
-    this.orders = [{
-      name: 'Jared',
-      items: [{
-        type: {
-          id: 0,
-          name: 'Maple Longjohn',
-          description: 'The best!'
-        },
-        quantity: OrderQuantity.Single
-      }],
-      status: OrderStatus.New
-    }, {
-      name: 'Trace',
-      items: [{
-        type: {
-          id: 0,
-          name: 'Maple Donut',
-          description: 'Light brown glaze on top.'
-        },
-        quantity: OrderQuantity.Single
-      }],
-      status: OrderStatus.New
-    }];
-  }
-
-
 }

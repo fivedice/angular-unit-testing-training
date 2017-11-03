@@ -1,4 +1,12 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef, ViewChild, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { OrderItem } from '../models/order-item.interface';
+import { Donut } from '../models/donut.interface';
+import { OrderQuantity } from '../models/order-quantity.enum';
+import { OrderItemListComponent } from '../order-item-list/order-item-list.component';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { QuantityPipe } from '../common/quantity.pipe';
 
 @Component({
   selector: 'app-order',
@@ -8,9 +16,58 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class OrderComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild(OrderItemListComponent)
+  public orderItemList: OrderItemListComponent;
 
-  ngOnInit() {
+  public OrderQuantity: any = OrderQuantity;
+  public form: FormGroup;
+  public selectedDonut: Donut;
+  public selectedOrderItems: OrderItem[] = [];
+
+  constructor(private router: Router,
+              private formBuilder: FormBuilder,
+              private changeDetector: ChangeDetectorRef) { }
+
+  public ngOnInit() {
+    this.form = this.formBuilder.group({
+      quantity: [OrderQuantity.Single]
+    });
   }
 
+  public addButtonClick() {
+    if (this.selectedDonut) {
+      const orderItem: OrderItem = {
+        id: 0,
+        type: this.selectedDonut,
+        quantity: this.form.get('quantity').value
+      };
+      this.orderItemList.addOrderItem(orderItem);
+    }
+    this.changeDetector.markForCheck();
+  }
+
+  public removeButtonClick() {
+
+  }
+
+  public orderButtonClick() {
+
+  }
+
+  public cancelClick() {
+    this.router.navigate(['/']);
+  }
+
+  public onDonutSelected(donut: Donut) {
+    this.selectedDonut = donut;
+  }
+
+  public hasSelectedDonut() {
+    return typeof this.selectedDonut !== 'undefined';
+  }
+
+  public onOrderItemSelectionChange(items: OrderItem[]) {
+    this.selectedOrderItems = items;
+    this.changeDetector.markForCheck();
+  }
 }

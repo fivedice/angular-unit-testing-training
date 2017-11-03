@@ -1,0 +1,13 @@
+ul, li {
+  width: 250px;
+  max-width: 250px;
+}
+
+ul {
+  border: solid 1px #ced4da;
+  border-radius: 4px;
+  max-height: 400px;
+  height: 400px;
+  min-height: 400px;
+  overflow: scroll;
+}

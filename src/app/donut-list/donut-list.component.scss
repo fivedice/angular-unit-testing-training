@@ -1,0 +1,9 @@
+ul, li {
+  width: 250px;
+  max-width: 250px;
+}
+
+ul {
+  max-height: 400px;
+  overflow: scroll;
+}

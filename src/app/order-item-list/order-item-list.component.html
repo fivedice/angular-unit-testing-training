@@ -1,0 +1,8 @@
+<app-list [listItems]="orderItems"
+          [itemIdAccessor]="getItemId.bind(this)"
+          [itemNameAccessor]="getItemName.bind(this)"
+          [itemPillValueAccessor]="getQuantity.bind(this)"
+          [multipleSelect]="true"
+          [showPill]="true"
+          (selectionChange)="selectionChanged($event)">
+</app-list>

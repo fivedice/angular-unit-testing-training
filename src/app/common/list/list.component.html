@@ -1,0 +1,11 @@
+<ul class="list-group">
+  <li *ngFor="let item of listItems"
+      class="list-group-item"
+      (click)="toggleSelection(item)"
+      [ngClass]="{'active': item.selected}">
+    <div class="d-flex justify-content-between align-items-center">
+      {{ getItemDisplay(item) }}
+      <span *ngIf="showPill" class="badge badge-pill">{{ getPillDisplay(item) }}</span>
+    </div>
+  </li>
+</ul>
