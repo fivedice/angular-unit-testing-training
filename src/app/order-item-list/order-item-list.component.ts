@@ -13,6 +13,8 @@ export class OrderItemListComponent {
 
   @Output()
   public selectionChange: EventEmitter<OrderItem[]> = new EventEmitter<OrderItem[]>();
+  @Output()
+  public itemsChange: EventEmitter<OrderItem[]> = new EventEmitter<OrderItem[]>();
 
   public orderItems: OrderItem[] = [];
 
@@ -37,11 +39,13 @@ export class OrderItemListComponent {
 
   public addOrderItem(item: OrderItem) {
     this.orderItems.push(item);
+    this.itemsChange.emit(this.orderItems);
     this.changeDetector.markForCheck();
   }
 
   public removeSelectedItems(): any {
     this.orderItems = this.orderItems.filter(item => !item.selected);
+    this.itemsChange.emit(this.orderItems);
     this.changeDetector.markForCheck();
   }
 

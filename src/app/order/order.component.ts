@@ -23,6 +23,7 @@ export class OrderComponent implements OnInit {
   public form: FormGroup;
   public selectedDonut: Donut;
   public selectedOrderItems: OrderItem[] = [];
+  public orderItemCount = 0;
 
   constructor(private router: Router,
               private formBuilder: FormBuilder,
@@ -68,6 +69,11 @@ export class OrderComponent implements OnInit {
 
   public onOrderItemSelectionChange(items: OrderItem[]) {
     this.selectedOrderItems = items;
+    this.changeDetector.markForCheck();
+  }
+
+  public onOrderItemsChange(items: OrderItem[]) {
+    this.orderItemCount = items.length;
     this.changeDetector.markForCheck();
   }
 }

@@ -33,7 +33,7 @@
 
     <button class="btn btn-block btn-primary"
             (click)="orderButtonClick()"
-            [disabled]="selectedOrderItems.length === 0">
+            [disabled]="orderItemCount === 0">
       Place Order
     </button>
 
@@ -46,6 +46,7 @@
 
   <div class="d-inline-flex p-2 flex-column">
     Items:
-    <app-order-item-list (selectionChange)="onOrderItemSelectionChange($event)"></app-order-item-list>
+    <app-order-item-list (selectionChange)="onOrderItemSelectionChange($event)"
+                         (itemsChange)="onOrderItemsChange($event)"></app-order-item-list>
   </div>
 </div>
