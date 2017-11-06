@@ -1,4 +1,4 @@
-import { Directive, Input, ElementRef } from '@angular/core';
+import { Directive, Input, ElementRef, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appSelectable]'
@@ -6,9 +6,13 @@ import { Directive, Input, ElementRef } from '@angular/core';
 export class SelectableDirective {
 
   @Input() public set selected(value: boolean) {
-    this.el.nativeElement.classList['active'] = value;
+    if (value) {
+      this.renderer.addClass(this.el.nativeElement, 'active');
+    } else {
+      this.renderer.removeClass(this.el.nativeElement, 'active');
+    }
   }
 
-  constructor(private el: ElementRef) { }
+  constructor(private renderer: Renderer2, private el: ElementRef) { }
 
 }
