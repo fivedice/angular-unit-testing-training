@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { OrderComponent } from './order/order.component';
 import { OrderListComponent } from './order-list/order-list.component';
-import { OrderListService } from './order-list/order-list.service';
+import { OrderService } from './order/order.service';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { DonutService } from './donut-list/donut.service';
 import { DonutListComponent } from './donut-list/donut-list.component';
@@ -37,7 +37,7 @@ import { ListComponent } from './common/list/list.component';
     ReactiveFormsModule,
     NgbModule.forRoot()
   ],
-  providers: [OrderListService, DonutService],
+  providers: [OrderService, DonutService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

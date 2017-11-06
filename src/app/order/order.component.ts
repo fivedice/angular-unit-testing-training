@@ -7,6 +7,9 @@ import { OrderQuantity } from '../models/order-quantity.enum';
 import { OrderItemListComponent } from '../order-item-list/order-item-list.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { QuantityPipe } from '../common/quantity.pipe';
+import { OrderService } from './order.service';
+import { Order } from '../models/order.interface';
+import { OrderStatus } from '../models/order-status.enum';
 
 @Component({
   selector: 'app-order',
@@ -23,15 +26,17 @@ export class OrderComponent implements OnInit {
   public form: FormGroup;
   public selectedDonut: Donut;
   public selectedOrderItems: OrderItem[] = [];
-  public orderItemCount = 0;
+  public orderItems: OrderItem[] = [];
 
-  constructor(private router: Router,
+  constructor(private orderService: OrderService,
+              private router: Router,
               private formBuilder: FormBuilder,
               private changeDetector: ChangeDetectorRef) { }
 
   public ngOnInit() {
     this.form = this.formBuilder.group({
-      quantity: [OrderQuantity.Single]
+      quantity: [OrderQuantity.Single],
+      name: ''
     });
   }
 
@@ -52,7 +57,14 @@ export class OrderComponent implements OnInit {
   }
 
   public orderButtonClick() {
+    const order: Order = {
+      name: this.form.get('name').value,
+      items: this.orderItems,
+      status: OrderStatus.New
+    };
 
+    this.orderService.placeOrder(order);
+    this.router.navigate(['/']);
   }
 
   public cancelClick() {
@@ -64,7 +76,11 @@ export class OrderComponent implements OnInit {
   }
 
   public hasSelectedDonut() {
-    return typeof this.selectedDonut !== 'undefined';
+    return this.selectedDonut && typeof this.selectedDonut !== 'undefined';
+  }
+
+  public isValid() {
+    return this.form.get('name').value.length > 0 && this.orderItems.length > 0;
   }
 
   public onOrderItemSelectionChange(items: OrderItem[]) {
@@ -73,7 +89,6 @@ export class OrderComponent implements OnInit {
   }
 
   public onOrderItemsChange(items: OrderItem[]) {
-    this.orderItemCount = items.length;
-    this.changeDetector.markForCheck();
+    this.orderItems = items;
   }
 }

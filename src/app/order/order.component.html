@@ -7,6 +7,9 @@
   <div class="d-inline-flex p-2 flex-column button-list justify-content-center">
 
     <form novalidate [formGroup]="form" class="btn-block">
+      Name:
+      <input type="text" class="form-control btn-block" formControlName="name"/>
+
       Quantity:
       <select class="form-control btn-block" formControlName="quantity">
         <option value="{{OrderQuantity.Single}}">Single</option>
@@ -33,7 +36,7 @@
 
     <button class="btn btn-block btn-primary"
             (click)="orderButtonClick()"
-            [disabled]="orderItemCount === 0">
+            [disabled]="!isValid()">
       Place Order
     </button>
 

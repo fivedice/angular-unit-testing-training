@@ -2,8 +2,10 @@ import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRe
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { OrderListService } from './order-list.service';
+import { OrderService } from '../order/order.service';
 import { Order } from '../models/order.interface';
+import { QuantityPipe } from '../common/quantity.pipe';
+import { OrderItem } from '../models/order-item.interface';
 
 @Component({
   selector: 'app-order-list',
@@ -20,7 +22,7 @@ export class OrderListComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription[] = [];
 
-  constructor(private orderListService: OrderListService,
+  constructor(private orderListService: OrderService,
               private changeDetector: ChangeDetectorRef) { }
 
   public ngOnInit() {
@@ -40,6 +42,27 @@ export class OrderListComponent implements OnInit, OnDestroy {
       }
     });
     this.orderListService.clearSelections();
+  }
+
+  public getItemId(order: Order): number {
+    return order.id;
+  }
+
+  public getItemName(order: Order): string {
+    return order.name;
+  }
+
+  public getQuantity(order: Order): number {
+    const pipe: QuantityPipe = new QuantityPipe();
+    let qty = 0;
+    order.items.forEach((item: OrderItem) => {
+      qty += pipe.transform(item.quantity);
+    });
+    return qty;
+  }
+
+  public selectionChanged(orders: Order[]) {
+    this.selectionChange.emit(orders);
   }
 
   public toggleSelection(event: MouseEvent, order: Order) {

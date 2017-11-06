@@ -8,11 +8,13 @@ import { OrderStatus } from '../models/order-status.enum';
 import { OrderQuantity } from '../models/order-quantity.enum';
 
 @Injectable()
-export class OrderListService {
+export class OrderService {
 
   public ordersChanged$: Subject<Order[]> = new Subject<Order[]>();
 
   private orders: Order[] = [];
+
+  private maxOrderId = 0;
 
   constructor() {}
 
@@ -30,6 +32,8 @@ export class OrderListService {
    * @memberof OrderListService
    */
   public placeOrder(order: Order) {
+    order.id = this.maxOrderId;
+    this.maxOrderId += 1;
     order.status = OrderStatus.New;
     this.orders.push(order);
     this.next();
