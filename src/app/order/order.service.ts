@@ -39,7 +39,6 @@ export class OrderService {
     order.status = OrderStatus.New;
     this.orders.push(order);
     this.next();
-    console.dir(this.orders);
   }
 
   /**
