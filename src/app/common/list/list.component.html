@@ -4,6 +4,7 @@
       (click)="toggleSelection(item)"
       appSelectable [selected]="item.selected">
     <div class="d-flex justify-content-between align-items-center">
+      <span *ngIf="showStatusIcon" class="status-icon" [innerHtml]="getStatusIcon(item)"></span>
       {{ getItemDisplay(item) }}
       <span *ngIf="showPill" class="badge badge-pill">{{ getPillDisplay(item) }}</span>
     </div>

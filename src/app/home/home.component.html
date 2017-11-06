@@ -3,7 +3,7 @@
     Pending Orders:
     <app-order-list (selectionChange)="onSelectionChanged($event)"></app-order-list>
   </div>
-  
+
   <div class="d-inline-flex p-2 flex-column button-list justify-content-center">
 
     <button class="btn btn-block btn-primary" (click)="orderButtonClick()">Order Now</button>
@@ -13,7 +13,8 @@
             [disabled]="selectedOrders.length !== 1">View Order</button>
 
     <button class="btn btn-block"
-            [disabled]="selectedOrders.length === 0"
+            (click)="markOrderReadyButtonClick()"
+            [disabled]="disableMarkReadyButton()"
             [ngPlural]="selectedOrders.length">
       <ng-template ngPluralCase="=0">Mark Order Ready</ng-template>
       <ng-template ngPluralCase="=1">Mark Order Ready</ng-template>
@@ -21,7 +22,8 @@
     </button>
 
     <button class="btn btn-block"
-            [disabled]="selectedOrders.length === 0"
+            (click)="orderPickedUpButtonClick()"
+            [disabled]="disablePickUpButton()"
             [ngPlural]="selectedOrders.length">
       <ng-template ngPluralCase="=0">Order Picked Up</ng-template>
       <ng-template ngPluralCase="=1">Order Picked Up</ng-template>

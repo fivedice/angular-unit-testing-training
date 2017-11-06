@@ -30,6 +30,12 @@ export class ListComponent {
   @Input()
   public showPill = false;
 
+  @Input()
+  public showStatusIcon = false;
+
+  @Input()
+  public itemStatusIconAccessor: (item: ListItem) => string;
+
   @Output()
   public selectionChange: EventEmitter<ListItem[]> = new EventEmitter<ListItem[]>();
 
@@ -41,6 +47,10 @@ export class ListComponent {
 
   public getPillDisplay(item: ListItem): string | number {
     return this.itemPillValueAccessor(item);
+  }
+
+  public getStatusIcon(item: ListItem): string {
+    return this.itemStatusIconAccessor(item);
   }
 
   public toggleSelection(item: ListItem) {

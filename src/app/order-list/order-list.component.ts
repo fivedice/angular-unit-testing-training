@@ -6,6 +6,7 @@ import { OrderService } from '../order/order.service';
 import { Order } from '../models/order.interface';
 import { QuantityPipe } from '../common/quantity.pipe';
 import { OrderItem } from '../models/order-item.interface';
+import { OrderStatus } from '../models/order-status.enum';
 
 @Component({
   selector: 'app-order-list',
@@ -59,6 +60,17 @@ export class OrderListComponent implements OnInit, OnDestroy {
       qty += pipe.transform(item.quantity);
     });
     return qty;
+  }
+
+  public getStatusIcon(order: Order): string {
+    switch (order.status) {
+      case OrderStatus.New:
+        return '*';
+      case OrderStatus.Ready:
+        return '&#x2713;';
+      default:
+        return '&nbsp;';
+    }
   }
 
   public selectionChanged(orders: Order[]) {

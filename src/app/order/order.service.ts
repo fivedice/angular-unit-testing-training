@@ -16,7 +16,9 @@ export class OrderService {
 
   private maxOrderId = 0;
 
-  constructor() {}
+  constructor() {
+    this.setDefaultOrders();
+  }
 
   /**
    * Fires a fake async request to get all orders that have not been picked up.
@@ -37,6 +39,7 @@ export class OrderService {
     order.status = OrderStatus.New;
     this.orders.push(order);
     this.next();
+    console.dir(this.orders);
   }
 
   /**
@@ -73,5 +76,90 @@ export class OrderService {
       const pending = this.orders.filter(order => order.status !== OrderStatus.PickedUp);
       this.ordersChanged$.next(pending);
     }, 100);
+  }
+
+  private setDefaultOrders() {
+    this.orders = [{
+      'name': 'Default 1',
+      'items': [{
+        'id': 0,
+        'type': {
+          'id': 6,
+          'name':
+          'Cake Blueberry Donut',
+          'selected': true
+        },
+        'quantity': 0
+      }],
+      'status': 0,
+      'id': 0,
+      'selected': false
+    }, {
+      'name':
+      'Default 2',
+      'items': [{
+        'id': 0,
+        'type': {
+          'id': 0,
+          'name':
+          'Raised Maple Donut',
+          'selected': true
+        },
+        'quantity': 1
+      }],
+      'status': 0,
+      'id': 1,
+      'selected': false
+    }, {
+      'name': 'Default 3',
+      'items': [{
+        'id': 0,
+        'type': {
+          'id': 6,
+          'name': 'Cake Blueberry Donut',
+          'selected': false
+        },
+        'quantity': 0
+      }, {
+        'id': 0,
+        'type': {
+          'id': 0,
+          'name': 'Raised Maple Donut',
+          'selected': false
+        },
+        'quantity': 1
+      }, {
+        'id': 0,
+        'type': {
+          'id': 2,
+          'name': 'Raised Chocolate Donut',
+          'selected': false
+        },
+        'quantity': 2
+      }, {
+        'id': 0,
+        'type': {
+          'id': 3,
+          'name': 'Raised Strawberry Donut',
+          'selected': true
+        },
+        'quantity': 3
+      }],
+      'status': 0,
+      'id': 2,
+      'selected': false
+    }, {
+      'name': 'Favorites',
+      'items': [{
+        'id': 0,
+        'type': {
+          'id': 71,
+          'name': 'Maple Long John',
+          'selected': true
+        }, 'quantity': 3
+      }],
+      'status': 0,
+      'id': 3
+    }];
   }
 }

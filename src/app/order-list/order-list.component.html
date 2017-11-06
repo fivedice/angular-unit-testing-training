@@ -4,5 +4,7 @@
           [itemPillValueAccessor]="getQuantity.bind(this)"
           [multipleSelect]="true"
           [showPill]="true"
+          [showStatusIcon]="true"
+          [itemStatusIconAccessor]="getStatusIcon.bind(this)"
           (selectionChange)="selectionChanged($event)">
 </app-list>
