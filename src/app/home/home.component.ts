@@ -42,11 +42,11 @@ export class HomeComponent {
   }
 
   public disableMarkReadyButton() {
-    return this.selectedOrders.length === 0 && this.selectedOrders.some(order => order.status !== OrderStatus.New);
+    return this.selectedOrders.length === 0 || !this.selectedOrders.some(order => order.status === OrderStatus.New);
   }
 
   public disablePickUpButton() {
-    return this.selectedOrders.length === 0 && this.selectedOrders.some(order => order.status !== OrderStatus.Ready);
+    return this.selectedOrders.length === 0 || this.selectedOrders.some(order => order.status !== OrderStatus.Ready);
   }
 
   public onSelectionChanged(orders: Order[]) {
