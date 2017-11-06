@@ -7,9 +7,6 @@
   <div class="d-inline-flex p-2 flex-column button-list justify-content-center">
 
     <form novalidate [formGroup]="form" class="btn-block">
-      Name:
-      <input type="text" class="form-control btn-block" formControlName="name" />
-
       Quantity:
       <select class="form-control d-block" formControlName="quantity">
         <option value="{{OrderQuantity.Single}}">Single</option>
@@ -33,6 +30,11 @@
       <ng-template ngPluralCase="=1">Remove Item</ng-template>
       <ng-template ngPluralCase="other">Remove Items</ng-template>
     </button>
+
+    <form novalidate [formGroup]="form" class="btn-block">
+      Name:
+      <input type="text" class="form-control btn-block" formControlName="name" />
+    </form>
 
     <button class="btn btn-block btn-primary"
             (click)="orderButtonClick()"
