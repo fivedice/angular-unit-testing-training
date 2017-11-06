@@ -9,10 +9,6 @@
     <button class="btn btn-block btn-primary" (click)="orderButtonClick()">Order Now</button>
 
     <button class="btn btn-block"
-            (click)="viewOrderButtonClick()"
-            [disabled]="selectedOrders.length !== 1">View Order</button>
-
-    <button class="btn btn-block"
             (click)="markOrderReadyButtonClick()"
             [disabled]="disableMarkReadyButton()"
             [ngPlural]="selectedOrders.length">

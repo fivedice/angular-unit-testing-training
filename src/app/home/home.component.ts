@@ -25,10 +25,6 @@ export class HomeComponent {
     this.router.navigate(['order']);
   }
 
-  public viewOrderButtonClick() {
-    this.router.navigate(['orderdetails']);
-  }
-
   public markOrderReadyButtonClick() {
     this.selectedOrders.forEach((order: Order) => {
       this.orderService.changeOrderStatus(order, OrderStatus.Ready);
