@@ -8,10 +8,10 @@
 
     <form novalidate [formGroup]="form" class="btn-block">
       Name:
-      <input type="text" class="form-control btn-block" formControlName="name"/>
+      <input type="text" class="form-control btn-block" formControlName="name" />
 
       Quantity:
-      <select class="form-control btn-block" formControlName="quantity">
+      <select class="form-control d-block" formControlName="quantity">
         <option value="{{OrderQuantity.Single}}">Single</option>
         <option value="{{OrderQuantity.HalfDozen}}">1/2 Dozen</option>
         <option value="{{OrderQuantity.OneDozen}}">1 Dozen</option>

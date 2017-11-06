@@ -17,6 +17,7 @@ import { DonutListComponent } from './donut-list/donut-list.component';
 import { OrderItemListComponent } from './order-item-list/order-item-list.component';
 import { QuantityPipe } from './common/quantity.pipe';
 import { ListComponent } from './common/list/list.component';
+import { SelectableDirective } from './common/selectable.directive';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ListComponent } from './common/list/list.component';
     DonutListComponent,
     OrderItemListComponent,
     QuantityPipe,
-    ListComponent
+    ListComponent,
+    SelectableDirective
   ],
   imports: [
     BrowserModule,
