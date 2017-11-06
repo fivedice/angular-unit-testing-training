@@ -1,7 +1,9 @@
 <div class="d-flex">
   <div class="d-inline-flex p-2 flex-column">
     Donuts:
-    <app-donut-list class="list" (selectionChange)="onDonutSelected($event)"></app-donut-list>
+    <app-donut-list class="list"
+                    (selectionChange)="onDonutSelected($event)"
+                    (doubleClick)="onDonutDoubleClick($event)"></app-donut-list>
   </div>
 
   <div class="d-inline-flex p-2 flex-column button-list justify-content-center">

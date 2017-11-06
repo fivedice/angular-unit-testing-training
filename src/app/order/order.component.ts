@@ -91,4 +91,9 @@ export class OrderComponent implements OnInit {
   public onOrderItemsChange(items: OrderItem[]) {
     this.orderItems = items;
   }
+
+  public onDonutDoubleClick(item: Donut) {
+    this.selectedDonut = item;
+    this.addButtonClick();
+  }
 }

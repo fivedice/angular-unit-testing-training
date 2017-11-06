@@ -3,5 +3,6 @@
           [itemNameAccessor]="getItemName"
           [multipleSelect]="false"
           [showPill]="false"
-          (selectionChange)="selectionChanged($event)">
+          (selectionChange)="selectionChanged($event)"
+          (doubleClick)="onDoubleClick($event)">
 </app-list>

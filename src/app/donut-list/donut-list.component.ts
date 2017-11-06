@@ -15,6 +15,9 @@ export class DonutListComponent implements OnInit, OnDestroy {
   @Output()
   public selectionChange: EventEmitter<Donut> = new EventEmitter<Donut>();
 
+  @Output()
+  public doubleClick: EventEmitter<Donut> = new EventEmitter<Donut>();
+
   public donuts: Donut[] = [];
 
   private subscriptions: Subscription[] = [];
@@ -52,5 +55,9 @@ export class DonutListComponent implements OnInit, OnDestroy {
   public selectionChanged(donuts: Donut[]) {
     const donut: Donut = (donuts.length > 0) ? donuts[0] : undefined;
     this.selectionChange.emit(donut);
+  }
+
+  public onDoubleClick(donut: Donut) {
+    this.doubleClick.emit(donut);
   }
 }
