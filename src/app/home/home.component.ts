@@ -15,50 +15,50 @@ import { GithubService } from '../common/github-service/github.service';
 })
 export class HomeComponent implements OnInit {
 
-  public angularReleaseVersion: string;
+  angularReleaseVersion: string;
 
   @ViewChild(OrderListComponent)
-  public orderList: OrderListComponent;
+  orderList: OrderListComponent;
 
-  public selectedOrders: Order[] = [];
+  selectedOrders: Order[] = [];
 
   constructor(private orderService: OrderService,
               private githubService: GithubService,
               private router: Router,
               private changeDetector: ChangeDetectorRef) { }
 
-  public ngOnInit() {
+  ngOnInit() {
     this.githubService.angularVersionSubject.pipe(first()).subscribe((version: string) => {
       this.angularReleaseVersion = version;
       this.changeDetector.markForCheck();
     });
     this.githubService.getAngularLatestVersion();
   }
-  public orderButtonClick() {
+  orderButtonClick() {
     this.router.navigate(['order']);
   }
 
-  public markOrderReadyButtonClick() {
+  markOrderReadyButtonClick() {
     this.selectedOrders.forEach((order: Order) => {
       this.orderService.changeOrderStatus(order, OrderStatus.Ready);
     });
   }
 
-  public orderPickedUpButtonClick() {
+  orderPickedUpButtonClick() {
     this.selectedOrders.forEach((order: Order) => {
       this.orderService.changeOrderStatus(order, OrderStatus.PickedUp);
     });
   }
 
-  public disableMarkReadyButton() {
+  disableMarkReadyButton() {
     return this.selectedOrders.length === 0 || !this.selectedOrders.some(order => order.status === OrderStatus.New);
   }
 
-  public disablePickUpButton() {
+  disablePickUpButton() {
     return this.selectedOrders.length === 0 || this.selectedOrders.some(order => order.status !== OrderStatus.Ready);
   }
 
-  public onSelectionChanged(orders: Order[]) {
+  onSelectionChanged(orders: Order[]) {
     this.selectedOrders = orders;
   }
 }

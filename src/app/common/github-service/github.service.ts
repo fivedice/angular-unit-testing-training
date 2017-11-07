@@ -8,11 +8,11 @@ import { GithubResponse } from './github-response.interface';
 @Injectable()
 export class GithubService {
 
-  public angularVersionSubject: Subject<string> = new Subject<string>();
+  angularVersionSubject: Subject<string> = new Subject<string>();
 
   constructor(private http: HttpClient) { }
 
-  public getAngularLatestVersion() {
+  getAngularLatestVersion() {
     this.http.get<GithubResponse[]>('https://api.github.com/repos/angular/angular/tags')
       .pipe(first())
       .subscribe((response: GithubResponse[]) => {

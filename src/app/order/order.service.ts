@@ -10,7 +10,7 @@ import { OrderQuantity } from '../models/order-quantity.enum';
 @Injectable()
 export class OrderService {
 
-  public ordersChanged$: Subject<Order[]> = new Subject<Order[]>();
+  ordersChanged$: Subject<Order[]> = new Subject<Order[]>();
 
   private orders: Order[] = [];
 
@@ -24,7 +24,7 @@ export class OrderService {
    * Fires a fake async request to get all orders that have not been picked up.
    * @memberof OrderListService
    */
-  public getPendingOrders() {
+  getPendingOrders() {
     this.next();
   }
 
@@ -33,7 +33,7 @@ export class OrderService {
    * @param {Order} order
    * @memberof OrderListService
    */
-  public placeOrder(order: Order) {
+  placeOrder(order: Order) {
     order.id = this.maxOrderId;
     this.maxOrderId += 1;
     order.status = OrderStatus.New;
@@ -47,7 +47,7 @@ export class OrderService {
    * @param {OrderStatus} status
    * @memberof OrderListService
    */
-  public changeOrderStatus(order: Order, status: OrderStatus) {
+  changeOrderStatus(order: Order, status: OrderStatus) {
     this.orders.find((o: Order) => {
       if (JSON.stringify(o) === JSON.stringify(order)) {
         o.status = status;
@@ -57,7 +57,7 @@ export class OrderService {
     this.next();
   }
 
-  public clearSelections() {
+  clearSelections() {
     this.orders.forEach((order: Order) => {
       order.selected = false;
     });

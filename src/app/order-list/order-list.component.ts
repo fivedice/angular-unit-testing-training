@@ -17,16 +17,16 @@ import { OrderStatus } from '../models/order-status.enum';
 export class OrderListComponent implements OnInit, OnDestroy {
 
   @Output()
-  public selectionChange: EventEmitter<Order[]> = new EventEmitter<Order[]>();
+  selectionChange: EventEmitter<Order[]> = new EventEmitter<Order[]>();
 
-  public orders: Order[] = [];
+  orders: Order[] = [];
 
   private subscriptions: Subscription[] = [];
 
   constructor(private orderListService: OrderService,
               private changeDetector: ChangeDetectorRef) { }
 
-  public ngOnInit() {
+  ngOnInit() {
     this.subscriptions.push(
       this.orderListService.ordersChanged$.subscribe((orders: Order[]) => {
         this.orders = orders;
@@ -36,7 +36,7 @@ export class OrderListComponent implements OnInit, OnDestroy {
     this.orderListService.getPendingOrders();
   }
 
-  public ngOnDestroy() {
+  ngOnDestroy() {
     this.subscriptions.forEach((sub: Subscription) => {
       if (!sub.closed) {
         sub.unsubscribe();
@@ -45,15 +45,15 @@ export class OrderListComponent implements OnInit, OnDestroy {
     this.orderListService.clearSelections();
   }
 
-  public getItemId(order: Order): number {
+  getItemId(order: Order): number {
     return order.id;
   }
 
-  public getItemName(order: Order): string {
+  getItemName(order: Order): string {
     return order.name;
   }
 
-  public getQuantity(order: Order): number {
+  getQuantity(order: Order): number {
     const pipe: QuantityPipe = new QuantityPipe();
     let qty = 0;
     order.items.forEach((item: OrderItem) => {
@@ -62,7 +62,7 @@ export class OrderListComponent implements OnInit, OnDestroy {
     return qty;
   }
 
-  public getStatusIcon(order: Order): string {
+  getStatusIcon(order: Order): string {
     switch (order.status) {
       case OrderStatus.New:
         return '*';
@@ -73,11 +73,11 @@ export class OrderListComponent implements OnInit, OnDestroy {
     }
   }
 
-  public selectionChanged(orders: Order[]) {
+  selectionChanged(orders: Order[]) {
     this.selectionChange.emit(orders);
   }
 
-  public toggleSelection(event: MouseEvent, order: Order) {
+  toggleSelection(event: MouseEvent, order: Order) {
     order.selected = !order.selected;
     this.selectionChange.emit(this.orders.filter((o: Order) => o.selected));
   }

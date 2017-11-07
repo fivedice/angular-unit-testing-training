@@ -13,53 +13,53 @@ import { ListItem } from './list-item.interface';
 export class ListComponent {
 
   @Input()
-  public listItems: Array<ListItem> = [];
+  listItems: Array<ListItem> = [];
 
   @Input()
-  public itemIdAccessor: (item: ListItem) => any;
+  itemIdAccessor: (item: ListItem) => any;
 
   @Input()
-  public itemNameAccessor: (item: ListItem) => string;
+  itemNameAccessor: (item: ListItem) => string;
 
   @Input()
-  public itemPillValueAccessor: (item: ListItem) => string | number;
+  itemPillValueAccessor: (item: ListItem) => string | number;
 
   @Input()
-  public multipleSelect = false;
+  multipleSelect = false;
 
   @Input()
-  public showPill = false;
+  showPill = false;
 
   @Input()
-  public showStatusIcon = false;
+  showStatusIcon = false;
 
   @Input()
-  public itemStatusIconAccessor: (item: ListItem) => string;
+  itemStatusIconAccessor: (item: ListItem) => string;
 
   @Output()
-  public selectionChange: EventEmitter<ListItem[]> = new EventEmitter<ListItem[]>();
+  selectionChange: EventEmitter<ListItem[]> = new EventEmitter<ListItem[]>();
 
   @Output()
-  public doubleClick: EventEmitter<ListItem> = new EventEmitter<ListItem>();
+  doubleClick: EventEmitter<ListItem> = new EventEmitter<ListItem>();
 
   private clickCount = 0;
   private debouncer;
 
   constructor(private changeDetector: ChangeDetectorRef) { }
 
-  public getItemDisplay(item: ListItem): string {
+  getItemDisplay(item: ListItem): string {
     return this.itemNameAccessor(item);
   }
 
-  public getPillDisplay(item: ListItem): string | number {
+  getPillDisplay(item: ListItem): string | number {
     return this.itemPillValueAccessor(item);
   }
 
-  public getStatusIcon(item: ListItem): string {
+  getStatusIcon(item: ListItem): string {
     return this.itemStatusIconAccessor(item);
   }
 
-  public toggleSelection(item: ListItem) {
+  toggleSelection(item: ListItem) {
     if (this.multipleSelect) {
       item.selected = !item.selected;
       const selected = this.listItems.filter(i => i.selected);

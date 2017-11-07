@@ -13,19 +13,19 @@ import { ListItem } from '../common/list/list-item.interface';
 export class DonutListComponent implements OnInit, OnDestroy {
 
   @Output()
-  public selectionChange: EventEmitter<Donut> = new EventEmitter<Donut>();
+  selectionChange: EventEmitter<Donut> = new EventEmitter<Donut>();
 
   @Output()
-  public doubleClick: EventEmitter<Donut> = new EventEmitter<Donut>();
+  doubleClick: EventEmitter<Donut> = new EventEmitter<Donut>();
 
-  public donuts: Donut[] = [];
+  donuts: Donut[] = [];
 
   private subscriptions: Subscription[] = [];
 
   constructor(private donutService: DonutService,
               private changeDetector: ChangeDetectorRef) { }
 
-  public ngOnInit() {
+  ngOnInit() {
     this.subscriptions.push(
       this.donutService.donutsChanged$.subscribe((doughnuts: Donut[]) => {
         this.donuts = doughnuts.sort((a, b) => {
@@ -36,7 +36,7 @@ export class DonutListComponent implements OnInit, OnDestroy {
     this.donutService.getDonuts();
   }
 
-  public ngOnDestroy() {
+  ngOnDestroy() {
     this.subscriptions.forEach((sub: Subscription) => {
       if (!sub.closed) {
         sub.unsubscribe();
@@ -44,20 +44,20 @@ export class DonutListComponent implements OnInit, OnDestroy {
     });
   }
 
-  public getItemId(donut: Donut): number {
+  getItemId(donut: Donut): number {
     return donut.id;
   }
 
-  public getItemName(donut: Donut): string {
+  getItemName(donut: Donut): string {
     return donut.name;
   }
 
-  public selectionChanged(donuts: Donut[]) {
+  selectionChanged(donuts: Donut[]) {
     const donut: Donut = (donuts.length > 0) ? donuts[0] : undefined;
     this.selectionChange.emit(donut);
   }
 
-  public onDoubleClick(donut: Donut) {
+  onDoubleClick(donut: Donut) {
     this.doubleClick.emit(donut);
   }
 }

@@ -20,27 +20,27 @@ import { OrderStatus } from '../models/order-status.enum';
 export class OrderComponent implements OnInit {
 
   @ViewChild(OrderItemListComponent)
-  public orderItemList: OrderItemListComponent;
+  orderItemList: OrderItemListComponent;
 
-  public OrderQuantity: any = OrderQuantity;
-  public form: FormGroup;
-  public selectedDonut: Donut;
-  public selectedOrderItems: OrderItem[] = [];
-  public orderItems: OrderItem[] = [];
+  OrderQuantity: any = OrderQuantity;
+  form: FormGroup;
+  selectedDonut: Donut;
+  selectedOrderItems: OrderItem[] = [];
+  orderItems: OrderItem[] = [];
 
   constructor(private orderService: OrderService,
               private router: Router,
               private formBuilder: FormBuilder,
               private changeDetector: ChangeDetectorRef) { }
 
-  public ngOnInit() {
+  ngOnInit() {
     this.form = this.formBuilder.group({
       quantity: [OrderQuantity.Single],
       name: ['', Validators.required]
     });
   }
 
-  public addButtonClick() {
+  addButtonClick() {
     if (this.selectedDonut) {
       const orderItem: OrderItem = {
         id: 0,
@@ -52,11 +52,11 @@ export class OrderComponent implements OnInit {
     this.changeDetector.markForCheck();
   }
 
-  public removeButtonClick() {
+  removeButtonClick() {
     this.orderItemList.removeSelectedItems();
   }
 
-  public submit() {
+  submit() {
     const order: Order = {
       name: this.form.get('name').value,
       items: this.orderItems,
@@ -67,32 +67,32 @@ export class OrderComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  public cancelClick() {
+  cancelClick() {
     this.router.navigate(['/']);
   }
 
-  public onDonutSelected(donut: Donut) {
+  onDonutSelected(donut: Donut) {
     this.selectedDonut = donut;
   }
 
-  public hasSelectedDonut() {
+  hasSelectedDonut() {
     return this.selectedDonut && typeof this.selectedDonut !== 'undefined';
   }
 
-  public isValid() {
+  isValid() {
     return this.form.valid && this.orderItems.length > 0;
   }
 
-  public onOrderItemSelectionChange(items: OrderItem[]) {
+  onOrderItemSelectionChange(items: OrderItem[]) {
     this.selectedOrderItems = items;
     this.changeDetector.markForCheck();
   }
 
-  public onOrderItemsChange(items: OrderItem[]) {
+  onOrderItemsChange(items: OrderItem[]) {
     this.orderItems = items;
   }
 
-  public onDonutDoubleClick(item: Donut) {
+  onDonutDoubleClick(item: Donut) {
     this.selectedDonut = item;
     this.addButtonClick();
   }

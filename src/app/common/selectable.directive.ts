@@ -5,7 +5,7 @@ import { Directive, Input, ElementRef, Renderer2 } from '@angular/core';
 })
 export class SelectableDirective {
 
-  @Input() public set selected(value: boolean) {
+  @Input() set selected(value: boolean) {
     if (value) {
       this.renderer.addClass(this.el.nativeElement, 'active');
     } else {
