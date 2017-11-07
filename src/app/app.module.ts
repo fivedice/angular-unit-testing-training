@@ -18,6 +18,7 @@ import { OrderItemListComponent } from './order-item-list/order-item-list.compon
 import { QuantityPipe } from './common/quantity.pipe';
 import { ListComponent } from './common/list/list.component';
 import { SelectableDirective } from './common/selectable.directive';
+import { GithubService } from './common/github-service/github.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,11 @@ import { SelectableDirective } from './common/selectable.directive';
     ReactiveFormsModule,
     NgbModule.forRoot()
   ],
-  providers: [OrderService, DonutService],
+  providers: [
+    OrderService,
+    DonutService,
+    GithubService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

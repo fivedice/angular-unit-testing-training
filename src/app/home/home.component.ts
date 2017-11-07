@@ -1,9 +1,11 @@
-import { Component, ChangeDetectionStrategy, ViewChild } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewChild, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { first } from 'rxjs/operators/first';
 import { OrderListComponent } from '../order-list/order-list.component';
 import { Order } from '../models/order.interface';
 import { OrderService } from '../order/order.service';
 import { OrderStatus } from '../models/order-status.enum';
+import { GithubService } from '../common/github-service/github.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +13,9 @@ import { OrderStatus } from '../models/order-status.enum';
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+
+  public angularReleaseVersion: string;
 
   @ViewChild(OrderListComponent)
   public orderList: OrderListComponent;
@@ -19,8 +23,17 @@ export class HomeComponent {
   public selectedOrders: Order[] = [];
 
   constructor(private orderService: OrderService,
-              private router: Router) { }
+              private githubService: GithubService,
+              private router: Router,
+              private changeDetector: ChangeDetectorRef) { }
 
+  public ngOnInit() {
+    this.githubService.angularVersionSubject.pipe(first()).subscribe((version: string) => {
+      this.angularReleaseVersion = version;
+      this.changeDetector.markForCheck();
+    });
+    this.githubService.getAngularLatestVersion();
+  }
   public orderButtonClick() {
     this.router.navigate(['order']);
   }
