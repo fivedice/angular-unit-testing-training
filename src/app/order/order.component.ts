@@ -5,7 +5,7 @@ import { OrderItem } from '../models/order-item.interface';
 import { Donut } from '../models/donut.interface';
 import { OrderQuantity } from '../models/order-quantity.enum';
 import { OrderItemListComponent } from '../order-item-list/order-item-list.component';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { QuantityPipe } from '../common/quantity.pipe';
 import { OrderService } from './order.service';
 import { Order } from '../models/order.interface';
@@ -36,7 +36,7 @@ export class OrderComponent implements OnInit {
   public ngOnInit() {
     this.form = this.formBuilder.group({
       quantity: [OrderQuantity.Single],
-      name: ''
+      name: ['', Validators.required]
     });
   }
 
@@ -56,7 +56,7 @@ export class OrderComponent implements OnInit {
     this.orderItemList.removeSelectedItems();
   }
 
-  public orderButtonClick() {
+  public submit() {
     const order: Order = {
       name: this.form.get('name').value,
       items: this.orderItems,
@@ -80,7 +80,7 @@ export class OrderComponent implements OnInit {
   }
 
   public isValid() {
-    return this.form.get('name').value.length > 0 && this.orderItems.length > 0;
+    return this.form.valid && this.orderItems.length > 0;
   }
 
   public onOrderItemSelectionChange(items: OrderItem[]) {
