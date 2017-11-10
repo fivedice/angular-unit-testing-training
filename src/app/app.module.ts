@@ -11,7 +11,6 @@ import { HomeComponent } from './home/home.component';
 import { OrderComponent } from './order/order.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { OrderService } from './order/order.service';
-import { OrderDetailsComponent } from './order-details/order-details.component';
 import { DonutService } from './donut-list/donut.service';
 import { DonutListComponent } from './donut-list/donut-list.component';
 import { OrderItemListComponent } from './order-item-list/order-item-list.component';
@@ -26,7 +25,6 @@ import { GithubService } from './common/github-service/github.service';
     HomeComponent,
     OrderComponent,
     OrderListComponent,
-    OrderDetailsComponent,
     DonutListComponent,
     OrderItemListComponent,
     QuantityPipe,
