@@ -16,13 +16,16 @@ export class ListComponent {
   listItems: Array<ListItem> = [];
 
   @Input()
-  itemIdAccessor: (item: ListItem) => any;
+  itemIdAccessor: (item: ListItem) => string | number;
 
   @Input()
   itemNameAccessor: (item: ListItem) => string;
 
   @Input()
   itemPillValueAccessor: (item: ListItem) => string | number;
+
+  @Input()
+  itemStatusIconAccessor: (item: ListItem) => string;
 
   @Input()
   multipleSelect = false;
@@ -32,9 +35,6 @@ export class ListComponent {
 
   @Input()
   showStatusIcon = false;
-
-  @Input()
-  itemStatusIconAccessor: (item: ListItem) => string;
 
   @Output()
   selectionChange: EventEmitter<ListItem[]> = new EventEmitter<ListItem[]>();

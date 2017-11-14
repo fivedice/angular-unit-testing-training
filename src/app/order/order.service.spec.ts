@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { OrderListService } from './order-list.service';
+import { OrderService } from './order.service';
 
 describe('OrderListService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [OrderListService]
+      providers: [OrderService]
     });
   });
 
-  it('should be created', inject([OrderListService], (service: OrderListService) => {
+  it('should be created', inject([OrderService], (service: OrderService) => {
     expect(service).toBeTruthy();
   }));
 });
