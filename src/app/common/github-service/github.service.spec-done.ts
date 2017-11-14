@@ -1,6 +1,5 @@
 import { TestBed, inject, async } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpXhrBackend } from '@angular/common/http/src/xhr';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestRequest } from '@angular/common/http/testing/src/request';
 
