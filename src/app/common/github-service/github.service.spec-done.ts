@@ -46,45 +46,51 @@ fdescribe('GithubService', () => {
     expect(request.request.method).toEqual('GET');
   }));
 
-  it('can return latest Angular version', async(() => {
-    service.angularVersionSubject.subscribe((version: string) => {
-      expect(version).toBe('123.0.0');
-      // fail();
-    });
-    response.name = '123.0.0';
-    service.getAngularLatestVersion();
-    const request: TestRequest = backend.expectOne('https://api.github.com/repos/angular/angular/tags');
-    request.flush([response]);
-  }));
 
-  it('will return undefined if no version number found', async(() => {
-    service.angularVersionSubject.subscribe((version: string) => {
-      expect(version).toBeUndefined();
-    });
-    service.getAngularLatestVersion();
-    const request: TestRequest = backend.expectOne('https://api.github.com/repos/angular/angular/tags');
-    request.flush([response]);
-  }));
 
-  it('can return latest Angular version from bigger array', async(() => {
-    service.angularVersionSubject.subscribe((version: string) => {
-      expect(version).toBe('1.0.0');
-    });
-    const versioned = Object.assign({}, response, { name: '1.0.0' });
-    service.getAngularLatestVersion();
-    const request: TestRequest = backend.expectOne('https://api.github.com/repos/angular/angular/tags');
-    request.flush([response, response, versioned]);
-  }));
+  // STOP HERE and cover OBSERVABLES
 
-  it('can return latest Angular version from bigger array', async(() => {
-    service.angularVersionSubject.subscribe((version: string) => {
-      expect(version).toBe('2.0.0');
-    });
-    const versioned1 = Object.assign({}, response, { name: '1.0.0' });
-    const versioned2 = Object.assign({}, response, { name: '2.0.0' });
 
-    service.getAngularLatestVersion();
-    const request: TestRequest = backend.expectOne('https://api.github.com/repos/angular/angular/tags');
-    request.flush([response, response, versioned2, versioned1]);
-  }));
+
+  // it('can return latest Angular version', async(() => {
+  //   service.angularVersionSubject.subscribe((version: string) => {
+  //     expect(version).toBe('123.0.0');
+  //     // fail();
+  //   });
+  //   response.name = '123.0.0';
+  //   service.getAngularLatestVersion();
+  //   const request: TestRequest = backend.expectOne('https://api.github.com/repos/angular/angular/tags');
+  //   request.flush([response]);
+  // }));
+
+  // it('will return undefined if no version number found', async(() => {
+  //   service.angularVersionSubject.subscribe((version: string) => {
+  //     expect(version).toBeUndefined();
+  //   });
+  //   service.getAngularLatestVersion();
+  //   const request: TestRequest = backend.expectOne('https://api.github.com/repos/angular/angular/tags');
+  //   request.flush([response]);
+  // }));
+
+  // it('can return latest Angular version from bigger array', async(() => {
+  //   service.angularVersionSubject.subscribe((version: string) => {
+  //     expect(version).toBe('1.0.0');
+  //   });
+  //   const versioned = Object.assign({}, response, { name: '1.0.0' });
+  //   service.getAngularLatestVersion();
+  //   const request: TestRequest = backend.expectOne('https://api.github.com/repos/angular/angular/tags');
+  //   request.flush([response, response, versioned]);
+  // }));
+
+  // it('can return latest Angular version from bigger array', async(() => {
+  //   service.angularVersionSubject.subscribe((version: string) => {
+  //     expect(version).toBe('2.0.0');
+  //   });
+  //   const versioned1 = Object.assign({}, response, { name: '1.0.0' });
+  //   const versioned2 = Object.assign({}, response, { name: '2.0.0' });
+
+  //   service.getAngularLatestVersion();
+  //   const request: TestRequest = backend.expectOne('https://api.github.com/repos/angular/angular/tags');
+  //   request.flush([response, response, versioned2, versioned1]);
+  // }));
 });
