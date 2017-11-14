@@ -8,7 +8,4 @@ export class SelectableDirective {
   @Input()
   @HostBinding('class.active')
   selected: boolean;
-
-  constructor() { }
-
 }
