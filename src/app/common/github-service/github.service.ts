@@ -19,7 +19,7 @@ export class GithubService {
         const latest = response.find((item: GithubResponse) => {
           return isNumeric(item.name.substring(0, 1));
         });
-        this.angularVersionSubject.next(latest.name);
+        this.angularVersionSubject.next(latest ? latest.name : undefined);
       });
   }
 }
