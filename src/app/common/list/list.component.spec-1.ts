@@ -8,22 +8,26 @@ import { SelectableDirective } from '../selectable.directive';
 interface UnitTestListItem extends ListItem {
   id: number;
   name: string;
-  pill: number;
+  pill?: number;
+  icon?: string;
 }
 
 function getListItems(): Array<UnitTestListItem> {
   return [{
     id: 0,
     name: 'zero',
-    pill: 0
+    pill: 0,
+    icon: 'ZERO'
   }, {
     id: 1,
     name: 'one',
-    pill: 1
+    pill: 1,
+    icon: 'ONE'
   }, {
     id: 2,
     name: 'two',
-    pill: 2
+    pill: 2,
+    icon: 'TWO'
   }];
 }
 
@@ -39,7 +43,11 @@ function getItemPill(item: UnitTestListItem): number {
   return item.pill;
 }
 
-describe('ListComponent', () => {
+function getItemStatusIcon(item: UnitTestListItem): string {
+  return item.icon;
+}
+
+fdescribe('ListComponent', () => {
   let component: ListComponent;
   let fixture: ComponentFixture<ListComponent>;
 
@@ -98,5 +106,19 @@ describe('ListComponent', () => {
     expect(listItems[0].nativeElement.innerText).toBe('0');
     expect(listItems[1].nativeElement.innerText).toBe('1');
     expect(listItems[2].nativeElement.innerText).toBe('2');
+  });
+
+  it('can get item display', () => {
+    expect(component.getItemDisplay(component.listItems[0])).toBe('zero');
+  });
+
+  it('can get item pill value', () => {
+    component.itemPillValueAccessor = getItemPill;
+    expect(component.getPillDisplay(component.listItems[0])).toBe(0);
+  });
+
+  it('can get item status icon', () => {
+    component.itemStatusIconAccessor = getItemStatusIcon;
+    expect(component.getStatusIcon(component.listItems[0])).toBe('ZERO');
   });
 });
