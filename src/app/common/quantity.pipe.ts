@@ -16,6 +16,8 @@ export class QuantityPipe implements PipeTransform {
         return 12;
       case OrderQuantity.TwoDozen:
         return 24;
+      default:
+        return 0;
     }
   }
 
