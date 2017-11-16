@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
     });
     this.githubService.getAngularLatestVersion();
   }
+  
   orderButtonClick() {
     this.router.navigate(['order']);
   }
