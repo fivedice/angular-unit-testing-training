@@ -53,7 +53,7 @@ fdescribe('GithubService', () => {
 
 
   // it('can return latest Angular version', async(() => {
-  //   service.angularVersionSubject.subscribe((version: string) => {
+  //   service.angularVersionSubject$.subscribe((version: string) => {
   //     expect(version).toBe('123.0.0');
   //     // fail();
   //   });
@@ -64,7 +64,7 @@ fdescribe('GithubService', () => {
   // }));
 
   // it('will return undefined if no version number found', async(() => {
-  //   service.angularVersionSubject.subscribe((version: string) => {
+  //   service.angularVersionSubject$.subscribe((version: string) => {
   //     expect(version).toBeUndefined();
   //   });
   //   service.getAngularLatestVersion();
@@ -73,7 +73,7 @@ fdescribe('GithubService', () => {
   // }));
 
   // it('can return latest Angular version from bigger array', async(() => {
-  //   service.angularVersionSubject.subscribe((version: string) => {
+  //   service.angularVersionSubject$.subscribe((version: string) => {
   //     expect(version).toBe('1.0.0');
   //   });
   //   const versioned = Object.assign({}, response, { name: '1.0.0' });
@@ -83,7 +83,7 @@ fdescribe('GithubService', () => {
   // }));
 
   // it('can return latest Angular version from bigger array', async(() => {
-  //   service.angularVersionSubject.subscribe((version: string) => {
+  //   service.angularVersionSubject$.subscribe((version: string) => {
   //     expect(version).toBe('2.0.0');
   //   });
   //   const versioned1 = Object.assign({}, response, { name: '1.0.0' });

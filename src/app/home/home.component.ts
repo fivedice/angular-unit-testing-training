@@ -28,13 +28,13 @@ export class HomeComponent implements OnInit {
               private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.githubService.angularVersionSubject.pipe(first()).subscribe((version: string) => {
+    this.githubService.angularVersionSubject$.pipe(first()).subscribe((version: string) => {
       this.angularReleaseVersion = version;
       this.changeDetector.markForCheck();
     });
     this.githubService.getAngularLatestVersion();
   }
-  
+
   orderButtonClick() {
     this.router.navigate(['order']);
   }

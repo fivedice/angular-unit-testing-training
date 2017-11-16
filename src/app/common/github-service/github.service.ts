@@ -8,7 +8,7 @@ import { GithubResponse } from './github-response.interface';
 @Injectable()
 export class GithubService {
 
-  angularVersionSubject: Subject<string> = new Subject<string>();
+  angularVersionSubject$: Subject<string> = new Subject<string>();
 
   constructor(private http: HttpClient) { }
 
@@ -19,7 +19,7 @@ export class GithubService {
         const latest = response.find((item: GithubResponse) => {
           return isNumeric(item.name.substring(0, 1));
         });
-        this.angularVersionSubject.next(latest ? latest.name : undefined);
+        this.angularVersionSubject$.next(latest ? latest.name : undefined);
       });
   }
 }
