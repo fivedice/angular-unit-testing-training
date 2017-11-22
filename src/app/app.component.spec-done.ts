@@ -1,6 +1,7 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { By } from '@angular/platform-browser';
 
 fdescribe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -26,4 +27,15 @@ fdescribe('AppComponent', () => {
     expect(app).toBeTruthy();
   }));
 
+  it('should render title', () => {
+    app.name = 'Donut Shoppe';
+    fixture.detectChanges();
+    expect(fixture.nativeElement.innerText)
+      .toContain('Donut Shoppe');
+  });
+
+  it('should have title in h1', () => {
+    fixture.detectChanges();
+    expect(fixture.debugElement.query(By.css('h1')).nativeElement.innerText).toBe('Donut Shop');
+  });
 });
