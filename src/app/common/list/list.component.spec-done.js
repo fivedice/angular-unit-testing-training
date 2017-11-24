@@ -47,7 +47,7 @@ function getItemStatusIcon(item: UnitTestListItem): string {
   return item.icon;
 }
 
-fdescribe('ListComponent', () => {
+describe('ListComponent', () => {
   let component: ListComponent;
   let fixture: ComponentFixture<ListComponent>;
 
