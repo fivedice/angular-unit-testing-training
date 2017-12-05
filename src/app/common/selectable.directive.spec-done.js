@@ -29,13 +29,15 @@ fdescribe('SelectableDirective', () => {
   });
 
   it('should not have active class when selected is false', () => {
-    expect(fixture.debugElement.query(By.css('div')).classes).not.toEqual({ active: true });
+    expect(fixture.debugElement.query(By.css('div')).classes)
+      .not.toEqual({ active: true });
   });
 
   it('should have active class when selected is true', () => {
     component.selected = true;
     fixture.detectChanges();
-    expect(fixture.debugElement.query(By.css('div')).classes).toEqual({ active: true });
+    expect(fixture.debugElement.query(By.css('div')).classes)
+      .toEqual({ active: true });
   });
 });
 

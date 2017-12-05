@@ -88,7 +88,8 @@ describe('ListComponent', () => {
     // or other async activities then you don't need it.
     // fixture.whenStable().then(() => {
     const y = fixture.debugElement.query(By.css('li'));
-    const listItems = fixture.debugElement.queryAll(By.directive(SelectableDirective));
+    const listItems =
+      fixture.debugElement.queryAll(By.directive(SelectableDirective));
     expect(listItems.length).toBe(3);
     expect(listItems[0].nativeElement.innerText).toBe('zero');
     expect(listItems[1].nativeElement.innerText).toBe('one');

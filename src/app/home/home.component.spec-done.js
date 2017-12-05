@@ -55,15 +55,18 @@ fdescribe('HomeComponent', () => {
   // it('can render angular version (mocked)', () => {
   //   service.returnValue = '123';
   //   fixture.detectChanges();
-  //   expect(fixture.debugElement.nativeElement.innerText).toContain('Current Angular Release is version 123');
+  //   expect(fixture.debugElement.nativeElement.innerText)
+  //     .toContain('Current Angular Release is version 123');
   // });
 
   it('can render angular version (spies)', () => {
-    const spy = spyOn(service, 'getAngularLatestVersion').and.callFake(() => {
-      service['angularVersionSubject$'].next('123');
-    });
+    const spy = spyOn(service, 'getAngularLatestVersion').and.callFake(
+      () => {
+        service['angularVersionSubject$'].next('123');
+      });
     fixture.detectChanges();
-    expect(fixture.debugElement.nativeElement.innerText).toContain('Current Angular Release is version 123');
+    expect(fixture.debugElement.nativeElement.innerText)
+      .toContain('Current Angular Release is version 123');
   });
 
   it('routes on button click', () => {

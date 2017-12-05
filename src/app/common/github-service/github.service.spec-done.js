@@ -1,6 +1,7 @@
 import { TestBed, inject, async } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController }
+  from '@angular/common/http/testing';
 import { TestRequest } from '@angular/common/http/testing/src/request';
 
 import { GithubService } from './github.service';
@@ -41,7 +42,8 @@ fdescribe('GithubService', () => {
   // This just tests that the get call works, not what it returns.
   it('can call getAngularLatestVersion', async(() => {
     service.getAngularLatestVersion();
-    const request: TestRequest = backend.expectOne('https://api.github.com/repos/angular/angular/tags');
+    const request: TestRequest =
+      backend.expectOne('https://api.github.com/repos/angular/angular/tags');
     request.flush([response]);
     expect(request.request.method).toEqual('GET');
   }));
@@ -59,7 +61,8 @@ fdescribe('GithubService', () => {
   //   });
   //   response.name = '123.0.0';
   //   service.getAngularLatestVersion();
-  //   const request: TestRequest = backend.expectOne('https://api.github.com/repos/angular/angular/tags');
+  //   const request: TestRequest =
+  //     backend.expectOne('https://api.github.com/repos/angular/angular/tags');
   //   request.flush([response]);
   // }));
 
@@ -68,7 +71,8 @@ fdescribe('GithubService', () => {
   //     expect(version).toBeUndefined();
   //   });
   //   service.getAngularLatestVersion();
-  //   const request: TestRequest = backend.expectOne('https://api.github.com/repos/angular/angular/tags');
+  //   const request: TestRequest =
+  //     backend.expectOne('https://api.github.com/repos/angular/angular/tags');
   //   request.flush([response]);
   // }));
 
@@ -78,7 +82,8 @@ fdescribe('GithubService', () => {
   //   });
   //   const versioned = Object.assign({}, response, { name: '1.0.0' });
   //   service.getAngularLatestVersion();
-  //   const request: TestRequest = backend.expectOne('https://api.github.com/repos/angular/angular/tags');
+  //   const request: TestRequest =
+  //     backend.expectOne('https://api.github.com/repos/angular/angular/tags');
   //   request.flush([response, response, versioned]);
   // }));
 
@@ -90,7 +95,8 @@ fdescribe('GithubService', () => {
   //   const versioned2 = Object.assign({}, response, { name: '2.0.0' });
 
   //   service.getAngularLatestVersion();
-  //   const request: TestRequest = backend.expectOne('https://api.github.com/repos/angular/angular/tags');
+  //   const request: TestRequest =
+  //     backend.expectOne('https://api.github.com/repos/angular/angular/tags');
   //   request.flush([response, response, versioned2, versioned1]);
   // }));
 });
