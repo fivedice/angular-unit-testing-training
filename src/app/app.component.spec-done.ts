@@ -33,7 +33,7 @@ fdescribe('AppComponent', () => {
     expect(fixture.nativeElement.innerText).toContain('Donut Shoppe');
   });
 
-  it('should have title in h1', () => {
+  it('should have default title in h1', () => {
     fixture.detectChanges();
     expect(
       fixture.debugElement.query(By.css('h1')).nativeElement.innerText
