@@ -87,7 +87,6 @@ describe('ListComponent', () => {
     // If your component doesn't have child components
     // or other async activities then you don't need it.
     // fixture.whenStable().then(() => {
-    const y = fixture.debugElement.query(By.css('li'));
     const listItems =
       fixture.debugElement.queryAll(By.directive(SelectableDirective));
     expect(listItems.length).toBe(3);
@@ -101,7 +100,6 @@ describe('ListComponent', () => {
     component.getPillDisplay = getItemPill;
     component.showPill = true;
     fixture.detectChanges();
-    const y = fixture.debugElement.query(By.css('li'));
     const listItems = fixture.debugElement.queryAll(By.css('.badge'));
     expect(listItems.length).toBe(3);
     expect(listItems[0].nativeElement.innerText).toBe('0');
