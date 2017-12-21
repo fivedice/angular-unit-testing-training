@@ -54,9 +54,11 @@ fdescribe('OrderDetailComponent', () => {
     });
     params.next({ id: 0 });
     fixture.detectChanges();
+    expect(spy).toHaveBeenCalledTimes(1);
     expect(fixture.debugElement.nativeElement.innerText).toContain('Name: Unit Test 0\nStatus: 0\nItems:');
     params.next({ id: 1 });
     fixture.detectChanges();
+    expect(spy).toHaveBeenCalledTimes(2);
     expect(fixture.debugElement.nativeElement.innerText).toContain('Name: Unit Test 1\nStatus: 0\nItems:');
   });
 });
