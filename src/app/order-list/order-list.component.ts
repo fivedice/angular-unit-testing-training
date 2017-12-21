@@ -1,4 +1,8 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
+import {
+  Component, OnInit, OnDestroy,
+  ChangeDetectionStrategy, ChangeDetectorRef,
+  Input, Output, EventEmitter
+} from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -20,6 +24,9 @@ export class OrderListComponent implements OnInit, OnDestroy {
   selectionChange: EventEmitter<Order[]> = new EventEmitter<Order[]>();
 
   orders: Order[] = [];
+
+  @Input()
+  multipleSelect = true;
 
   private subscriptions: Subscription[] = [];
 

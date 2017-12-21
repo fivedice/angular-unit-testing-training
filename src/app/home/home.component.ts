@@ -62,4 +62,8 @@ export class HomeComponent implements OnInit {
   onSelectionChanged(orders: Order[]) {
     this.selectedOrders = orders;
   }
+
+  viewOrders() {
+    this.router.navigate(['orderdetails', -1]);
+  }
 }

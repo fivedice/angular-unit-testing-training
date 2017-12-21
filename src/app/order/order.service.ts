@@ -22,16 +22,20 @@ export class OrderService {
 
   /**
    * Fires a fake async request to get all orders that have not been picked up.
-   * @memberof OrderListService
+   * @memberof OrderService
    */
   getPendingOrders() {
     this.next();
   }
 
+  getOrder(id: number): Order {
+    return this.orders.find((order: Order) => order.id === id);
+  }
+
   /**
    * Fires a fake async request to place a new order.
    * @param {Order} order
-   * @memberof OrderListService
+   * @memberof OrderService
    */
   placeOrder(order: Order) {
     order.id = this.maxOrderId;
@@ -45,7 +49,7 @@ export class OrderService {
    * Fires a fake async request to change the status of an order.
    * @param {Order} order
    * @param {OrderStatus} status
-   * @memberof OrderListService
+   * @memberof OrderService
    */
   changeOrderStatus(order: Order, status: OrderStatus) {
     this.orders.find((o: Order) => {
@@ -67,7 +71,7 @@ export class OrderService {
   /**
    * Updates the observable stream on non-pending orders with the latest data.
    * @private
-   * @memberof OrderListService
+   * @memberof OrderService
    */
   private next() {
     // If this were an http get/post/etc, it would be asynchronous, so fake that...

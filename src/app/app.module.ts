@@ -18,6 +18,8 @@ import { QuantityPipe } from './common/quantity.pipe';
 import { ListComponent } from './common/list/list.component';
 import { SelectableDirective } from './common/selectable.directive';
 import { GithubService } from './common/github-service/github.service';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import { OrderDetailComponent } from './order-details/order-detail.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { GithubService } from './common/github-service/github.service';
     OrderItemListComponent,
     QuantityPipe,
     ListComponent,
-    SelectableDirective
+    SelectableDirective,
+    OrderDetailsComponent,
+    OrderDetailComponent
   ],
   imports: [
     BrowserModule,

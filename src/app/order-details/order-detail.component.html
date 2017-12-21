@@ -1,0 +1,15 @@
+<div  class="d-inline-flex p-2 flex-column">
+
+  <div>
+    Name: {{ order?.name }}
+  </div>
+  <div>
+    Status: {{ order?.status }}
+  </div>
+
+  <div>
+    Items:
+    <app-order-item-list [orderItems]="order?.items"></app-order-item-list>
+  </div>
+
+</div>

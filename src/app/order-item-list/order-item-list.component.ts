@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Output, EventEmitter, ChangeDetectorRef, Input } from '@angular/core';
 
 import { OrderItem } from '../models/order-item.interface';
 import { QuantityPipe } from '../common/quantity.pipe';
@@ -16,6 +16,7 @@ export class OrderItemListComponent {
   @Output()
   itemsChange: EventEmitter<OrderItem[]> = new EventEmitter<OrderItem[]>();
 
+  @Input()
   orderItems: OrderItem[] = [];
 
   constructor(private changeDetector: ChangeDetectorRef) { }

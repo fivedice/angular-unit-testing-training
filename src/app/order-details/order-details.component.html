@@ -1,0 +1,10 @@
+<div class="d-flex">
+  <div class="d-inline-flex p-2 flex-column">
+    Pending Orders:
+    <app-order-list (selectionChange)="onSelectionChanged($event)"
+                    [multipleSelect]="false">
+    </app-order-list>
+  </div>
+
+  <app-order-detail></app-order-detail>
+</div>
