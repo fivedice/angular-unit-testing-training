@@ -87,6 +87,8 @@ fdescribe('GithubService', () => {
   //   request.flush([response, response, versioned]);
   // }));
 
+  // // WHY do we need this test?
+  // // Look at the logic of the service code.
   // it('can return latest Angular version from bigger array', async(() => {
   //   service.angularVersionSubject$.subscribe((version: string) => {
   //     expect(version).toBe('2.0.0');
