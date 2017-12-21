@@ -20,6 +20,7 @@ import { SelectableDirective } from './common/selectable.directive';
 import { GithubService } from './common/github-service/github.service';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { OrderDetailComponent } from './order-details/order-detail.component';
+import { EasterEggComponent } from './misc/easter-egg/easter-egg.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { OrderDetailComponent } from './order-details/order-detail.component';
     ListComponent,
     SelectableDirective,
     OrderDetailsComponent,
-    OrderDetailComponent
+    OrderDetailComponent,
+    EasterEggComponent
   ],
   imports: [
     BrowserModule,
