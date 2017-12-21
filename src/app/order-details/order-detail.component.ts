@@ -24,7 +24,7 @@ export class OrderDetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscriptions.push(
       this.route.params.subscribe((params: Params) => {
-        if (params.id) {
+        if (params.id >= 0) {
           this.order = this.orderService.getOrder(+params.id);
           this.changeDetector.markForCheck();
         }
