@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OrderComponent } from './order.component';
+import { Router } from '@angular/router';
+import { OrderService } from './order.service';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('OrderComponent', () => {
   let component: OrderComponent;
@@ -8,9 +11,14 @@ describe('OrderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrderComponent ]
+      declarations: [OrderComponent],
+      providers: [
+        OrderService,
+        { provide: Router, useClass: RouterStub }
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -22,4 +30,16 @@ describe('OrderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // defaults
+
+  // is not valid by default
+
+  // can set values
+
+  // submit places order and routes
 });
+
+class RouterStub {
+  navigate(url: string) { return url; }
+}
