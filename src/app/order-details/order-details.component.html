@@ -4,6 +4,12 @@
     <app-order-list (selectionChange)="onSelectionChanged($event)"
                     [multipleSelect]="false">
     </app-order-list>
+
+    <button class="btn btn-block btn-primary"
+            (click)="goHome()">
+      Home
+    </button>
+
   </div>
 
   <app-order-detail></app-order-detail>

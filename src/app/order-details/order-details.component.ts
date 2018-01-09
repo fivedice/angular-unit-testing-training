@@ -28,4 +28,8 @@ export class OrderDetailsComponent implements OnInit {
       this.router.navigate(['orderdetails']);
     }
   }
+
+  goHome() {
+    this.router.navigate(['/']);
+  }
 }
