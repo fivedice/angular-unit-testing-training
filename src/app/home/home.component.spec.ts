@@ -8,7 +8,10 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      // imports for spy approach after doing the mocked approach
+      // providers
       declarations: [ HomeComponent ]
+      // isolate
     })
     .compileComponents();
   }));
@@ -22,4 +25,14 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // can render angular version (mocked)
+
+  // can render angular version (spies) then back to slides
+
+  // routes on button click
 });
+
+// RouterStub then back to slides
+
+// MockGithubService

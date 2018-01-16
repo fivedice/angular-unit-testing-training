@@ -9,6 +9,7 @@ describe('OrderItemListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ OrderItemListComponent ]
+      // isolate
     })
     .compileComponents();
   }));
@@ -22,4 +23,8 @@ describe('OrderItemListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // emits selection change
+
+  // how would you do items change?
 });

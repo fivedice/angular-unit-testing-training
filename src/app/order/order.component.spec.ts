@@ -37,7 +37,7 @@ describe('OrderComponent', () => {
 
   // can set values
 
-  // submit places order and routes
+  // submit places order and routes - Can you do this on your own?
 });
 
 class RouterStub {

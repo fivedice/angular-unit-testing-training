@@ -26,4 +26,8 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   }));
 
+  // should render title
+
+  // should have default title in H1
+  
 });
