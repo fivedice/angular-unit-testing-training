@@ -9,7 +9,7 @@ import { GithubResponse } from './github-response.interface';
 
 fdescribe('GithubService', () => {
   let service: GithubService;
-  let backend: HttpTestingController;
+  let controller: HttpTestingController;
   let response: GithubResponse;
 
   beforeEach(() => {
@@ -23,7 +23,7 @@ fdescribe('GithubService', () => {
       ]
     });
     service = TestBed.get(GithubService);
-    backend = TestBed.get(HttpTestingController);
+    controller = TestBed.get(HttpTestingController);
     response = {
       name: 'unittest',
       zipball_url: 'http://api.github.com',
@@ -43,7 +43,7 @@ fdescribe('GithubService', () => {
   it('can call getAngularLatestVersion', async(() => {
     service.getAngularLatestVersion();
     const request: TestRequest =
-      backend.expectOne('https://api.github.com/repos/angular/angular/tags');
+      controller.expectOne('https://api.github.com/repos/angular/angular/tags');
     request.flush([response]);
     expect(request.request.method).toEqual('GET');
   }));
@@ -62,7 +62,7 @@ fdescribe('GithubService', () => {
   //   response.name = '123.0.0';
   //   service.getAngularLatestVersion();
   //   const request: TestRequest =
-  //     backend.expectOne('https://api.github.com/repos/angular/angular/tags');
+  //     controller.expectOne('https://api.github.com/repos/angular/angular/tags');
   //   request.flush([response]);
   // }));
 
@@ -72,7 +72,7 @@ fdescribe('GithubService', () => {
   //   });
   //   service.getAngularLatestVersion();
   //   const request: TestRequest =
-  //     backend.expectOne('https://api.github.com/repos/angular/angular/tags');
+  //     controller.expectOne('https://api.github.com/repos/angular/angular/tags');
   //   request.flush([response]);
   // }));
 
@@ -83,7 +83,7 @@ fdescribe('GithubService', () => {
   //   const versioned = Object.assign({}, response, { name: '1.0.0' });
   //   service.getAngularLatestVersion();
   //   const request: TestRequest =
-  //     backend.expectOne('https://api.github.com/repos/angular/angular/tags');
+  //     controller.expectOne('https://api.github.com/repos/angular/angular/tags');
   //   request.flush([response, response, versioned]);
   // }));
 
@@ -98,7 +98,7 @@ fdescribe('GithubService', () => {
 
   //   service.getAngularLatestVersion();
   //   const request: TestRequest =
-  //     backend.expectOne('https://api.github.com/repos/angular/angular/tags');
+  //     controller.expectOne('https://api.github.com/repos/angular/angular/tags');
   //   request.flush([response, response, versioned2, versioned1]);
   // }));
 });
